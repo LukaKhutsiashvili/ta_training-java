@@ -3,12 +3,12 @@ package com.epam.training.luka_khutsiashvili.optional_practice_1;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.clickElement;
+import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.setInputText;
+
 
 public class Practice1 {
 
@@ -40,7 +40,7 @@ public class Practice1 {
             setInputText(wait, By.id("postform-name"), PASTE_NAME);
 
             // Click the create button
-            clickElement(wait, By.cssSelector("button.btn.-big[type='submit']"));
+            clickElement(wait, By.xpath("//button[text()='Create New Paste']"));
 
         } catch (Exception e) {
             // Log the exception for debugging purposes
@@ -49,16 +49,5 @@ public class Practice1 {
             // Quit the WebDriver instance
             driver.quit();
         }
-    }
-
-    private static void setInputText(WebDriverWait wait, By locator, String text) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        element.clear();
-        element.sendKeys(text);
-    }
-
-    private static void clickElement(WebDriverWait wait, By locator) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();
     }
 }
