@@ -47,7 +47,7 @@ public class PastebinTest {
     @AfterEach
     public void tearDown() {
         if (driver != null) {
-
+            driver.quit();
         }
     }
 }
