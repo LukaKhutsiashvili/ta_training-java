@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class PastebinPage {
     private WebDriver driver;
@@ -19,8 +20,8 @@ public class PastebinPage {
     private By expirationOption = By.xpath("//li[contains(@class, 'select2-results__option') and text()='10 Minutes']");
     private By pasteNameLocator = By.id("postform-name");
     private By submitButtonLocator = By.xpath("//button[text()='Create New Paste']");
+    private By pastedCodeLocator = By.xpath("//div[@class='source bash']/ol"); // Update based on actual element
     private By syntaxVerificationLocator = By.xpath("//div[@class='left']/a[text()='Bash']");
-    private By codeVerificationLocator = By.xpath("//textarea[@class='textarea']");
 
     public PastebinPage(WebDriver driver) {
         this.driver = driver;
@@ -39,18 +40,31 @@ public class PastebinPage {
         clickElement(submitButtonLocator);
     }
 
-
-
     public String getPageTitle() {
         return driver.getTitle();
     }
 
     public boolean isSyntaxBash() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(syntaxVerificationLocator)) != null;
+        WebElement selectedSyntax = driver.findElement(syntaxVerificationLocator);
+        return selectedSyntax.getText().equals("Bash");
     }
 
     public String getPastedCode() {
-        return driver.findElement(codeVerificationLocator).getText();
+        // Wait until the <ol class="bash"> is visible
+        List<WebElement> codeLines = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pastedCodeLocator));
+
+        // Extract text from each <li> element and concatenate it to form the full code
+        StringBuilder pastedCode = new StringBuilder();
+        for (WebElement line : codeLines) {
+            pastedCode.append(line.getText()).append("\n"); // Add newline after each line
+        }
+
+        return pastedCode.toString().trim(); // Return the concatenated text
+    }
+
+
+    public void waitForTitleToContain(String expectedTitle) {
+        wait.until(ExpectedConditions.titleContains(expectedTitle));
     }
 
     private void setInputText(By locator, String text) {

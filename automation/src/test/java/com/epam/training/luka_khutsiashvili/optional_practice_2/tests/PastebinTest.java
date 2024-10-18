@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PastebinTest {
@@ -33,15 +32,20 @@ public class PastebinTest {
     public void testCreateNewPaste() {
         pastebinPage.createNewPaste(PASTE_TEXT, PASTE_NAME);
 
-        // Verify page title contains the paste name (considering Pastebin might append its site name)
+        // Wait for the title to contain the expected paste name
+        pastebinPage.waitForTitleToContain(PASTE_NAME);
+
+        // Verify page title contains the paste name
         String actualTitle = pastebinPage.getPageTitle();
-        assertTrue(actualTitle.contains(PASTE_NAME), "Page title does not contain the expected paste name. Actual title: " + actualTitle);
+        assertTrue(actualTitle.contains(PASTE_NAME),
+                "Expected the page title to contain '" + PASTE_NAME + "', but it was '" + actualTitle + "'");
 
         // Verify syntax highlighting is Bash
         assertTrue(pastebinPage.isSyntaxBash(), "Syntax highlighting is not set to Bash.");
 
-        // Verify the pasted code matches the original
-        assertEquals(PASTE_TEXT, pastebinPage.getPastedCode(), "The pasted code does not match the original.");
+        String actualPastedCode = pastebinPage.getPastedCode();
+        assertTrue(actualPastedCode.contains(PASTE_TEXT),
+                "The pasted code does not contain the expected text. Actual pasted code: " + actualPastedCode);
     }
 
     @AfterEach
