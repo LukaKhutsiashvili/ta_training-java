@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.clickElement;
+import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.setInputText;
 
 import java.time.Duration;
 import java.util.List;
@@ -33,11 +35,11 @@ public class PastebinPage {
     }
 
     public void createNewPaste(String code, String pasteName) {
-        setInputText(codeInputLocator, code);
+        setInputText(wait,codeInputLocator, code);
         setSyntaxHighlighting();
         setExpiration();
-        setInputText(pasteNameLocator, pasteName);
-        clickElement(submitButtonLocator);
+        setInputText(wait,pasteNameLocator, pasteName);
+        clickElement(wait,submitButtonLocator);
     }
 
     public String getPageTitle() {
@@ -67,24 +69,13 @@ public class PastebinPage {
         wait.until(ExpectedConditions.titleContains(expectedTitle));
     }
 
-    private void setInputText(By locator, String text) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        element.clear();
-        element.sendKeys(text);
-    }
-
-    private void clickElement(By locator) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();
-    }
-
     private void setSyntaxHighlighting() {
-        clickElement(syntaxHighlightingDropdown);
-        clickElement(bashOption);
+        clickElement(wait,syntaxHighlightingDropdown);
+        clickElement(wait,bashOption);
     }
 
     private void setExpiration() {
-        clickElement(expirationDropdown);
-        clickElement(expirationOption);
+        clickElement(wait,expirationDropdown);
+        clickElement(wait,expirationOption);
     }
 }
