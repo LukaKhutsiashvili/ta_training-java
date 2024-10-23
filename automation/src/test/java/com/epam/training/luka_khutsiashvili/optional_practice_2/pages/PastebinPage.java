@@ -3,8 +3,11 @@ package com.epam.training.luka_khutsiashvili.optional_practice_2.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.setInputText;
 
@@ -15,31 +18,65 @@ public class PastebinPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private By codeInputLocator = By.id("postform-text");
-    private By syntaxHighlightingDropdown = By.id("select2-postform-format-container");
-    private By bashOption = By.xpath("//li[contains(@class, 'select2-results__option') and text()='Bash']");
-    private By expirationDropdown = By.id("select2-postform-expiration-container");
-    private By expirationOption = By.xpath("//li[contains(@class, 'select2-results__option') and text()='10 Minutes']");
-    private By pasteNameLocator = By.id("postform-name");
-    private By submitButtonLocator = By.xpath("//button[text()='Create New Paste']");
-    private By pastedCodeLocator = By.xpath("//div[@class='source bash']/ol"); // Update based on actual element
-    private By syntaxVerificationLocator = By.xpath("//div[@class='left']/a[text()='Bash']");
+    // Constants for default options
+    private static final String SYNTAX_HIGHLIGHTING = "Bash";
+    private static final String EXPIRATION_TIME = "10 Minutes";
 
+    // Initialize locators using @FindBy annotation
+    @FindBy(id = "postform-text")
+    private WebElement codeInput;
+
+    @FindBy(id = "select2-postform-format-container")
+    private WebElement syntaxHighlightingDropdown;
+
+    @FindBy(id = "select2-postform-expiration-container")
+    private WebElement expirationDropdown;
+
+    @FindBy(id = "postform-name")
+    private WebElement pasteNameInput;
+
+    @FindBy(xpath = "//button[text()='Create New Paste']")
+    private WebElement submitButton;
+
+    @FindBy(xpath = "//div[@class='source bash']/ol")
+    private WebElement pastedCode;
+
+    @FindBy(xpath = "//div[@class='left']/a[text()='Bash']")
+    private WebElement syntaxVerification;
+
+    // Constructor
     public PastebinPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        PageFactory.initElements(driver, this);
     }
 
+    // Open page
     public void openPage(String url) {
         driver.get(url);
     }
 
+    // Create new paste with flexibility for syntax and expiration
+    public void createNewPaste(String code, String pasteName, String syntaxHighlighting, String expirationTime) {
+        setInputText(wait, codeInput, code);
+        selectOption(syntaxHighlightingDropdown, syntaxHighlighting);
+        selectOption(expirationDropdown, expirationTime);
+        setInputText(wait, pasteNameInput, pasteName);
+        clickElement(wait, submitButton);
+    }
+
+    // Overloaded method for default values
     public void createNewPaste(String code, String pasteName) {
-        setInputText(wait,codeInputLocator, code);
-        setSyntaxHighlighting();
-        setExpiration();
-        setInputText(wait,pasteNameLocator, pasteName);
-        clickElement(wait,submitButtonLocator);
+        createNewPaste(code, pasteName, SYNTAX_HIGHLIGHTING, EXPIRATION_TIME);
+    }
+
+    // Helper for dropdown selection
+    private void selectOption(WebElement dropdown, String optionText) {
+        clickElement(wait, dropdown);
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//li[contains(@class, 'select2-results__option') and text()='" + optionText + "']")
+        ));
+        clickElement(wait, option);
     }
 
     public String getPageTitle() {
@@ -47,35 +84,21 @@ public class PastebinPage {
     }
 
     public boolean isSyntaxBash() {
-        WebElement selectedSyntax = driver.findElement(syntaxVerificationLocator);
-        return selectedSyntax.getText().equals("Bash");
+        return wait.until(ExpectedConditions.visibilityOf(syntaxVerification)).getText().equals(SYNTAX_HIGHLIGHTING);
     }
 
     public String getPastedCode() {
-        // Wait until the <ol class="bash"> is visible
-        List<WebElement> codeLines = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pastedCodeLocator));
+        wait.until(ExpectedConditions.visibilityOf(pastedCode));
+        List<WebElement> codeLines = pastedCode.findElements(By.tagName("li"));
 
-        // Extract text from each <li> element and concatenate it to form the full code
-        StringBuilder pastedCode = new StringBuilder();
+        StringBuilder pastedCodeText = new StringBuilder();
         for (WebElement line : codeLines) {
-            pastedCode.append(line.getText()).append("\n"); // Add newline after each line
+            pastedCodeText.append(line.getText()).append("\n");
         }
-
-        return pastedCode.toString().trim(); // Return the concatenated text
+        return pastedCodeText.toString().trim();
     }
-
 
     public void waitForTitleToContain(String expectedTitle) {
         wait.until(ExpectedConditions.titleContains(expectedTitle));
-    }
-
-    private void setSyntaxHighlighting() {
-        clickElement(wait,syntaxHighlightingDropdown);
-        clickElement(wait,bashOption);
-    }
-
-    private void setExpiration() {
-        clickElement(wait,expirationDropdown);
-        clickElement(wait,expirationOption);
     }
 }
