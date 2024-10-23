@@ -3,12 +3,12 @@ package com.epam.training.luka_khutsiashvili.optional_practice_1;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.clickElement;
-import static com.epam.training.luka_khutsiashvili.utility.HelperFunctions.setInputText;
 
+import java.time.Duration;
 
 public class Practice1 {
 
@@ -30,24 +30,32 @@ public class Practice1 {
             driver.get(URL);
 
             // Input text into the main text area
-            setInputText(wait, By.id("postform-text"), PASTE_TEXT);
+            WebElement textArea = wait.until(ExpectedConditions.elementToBeClickable(By.id("postform-text")));
+            textArea.clear();
+            textArea.sendKeys(PASTE_TEXT);
 
             // Select expiration time
-            clickElement(wait, By.id("select2-postform-expiration-container"));
-            clickElement(wait, By.xpath("//li[contains(@class, 'select2-results__option') and text()='" + EXPIRATION_TIME + "']"));
+            WebElement expirationDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-postform-expiration-container")));
+            expirationDropdown.click();
+
+            WebElement expirationOption = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//li[contains(@class, 'select2-results__option') and text()='" + EXPIRATION_TIME + "']")));
+            expirationOption.click();
 
             // Input paste name
-            setInputText(wait, By.id("postform-name"), PASTE_NAME);
+            WebElement pasteNameField = wait.until(ExpectedConditions.elementToBeClickable(By.id("postform-name")));
+            pasteNameField.clear();
+            pasteNameField.sendKeys(PASTE_NAME);
 
             // Click the create button
-            clickElement(wait, By.xpath("//button[text()='Create New Paste']"));
+            WebElement createButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Create New Paste']")));
+            createButton.click();
 
         } catch (Exception e) {
             // Log the exception for debugging purposes
             e.printStackTrace();
         } finally {
-            // Quit the WebDriver instance
-            driver.quit();
+              driver.quit();
         }
     }
 }
