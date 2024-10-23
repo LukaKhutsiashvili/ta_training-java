@@ -1,6 +1,6 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_2.tests;
+package com.epam.training.luka_khutsiashvili.optional_practice_2.test;
 
-import com.epam.training.luka_khutsiashvili.optional_practice_2.pages.PastebinPage;
+import com.epam.training.luka_khutsiashvili.optional_practice_2.page.PastebinPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

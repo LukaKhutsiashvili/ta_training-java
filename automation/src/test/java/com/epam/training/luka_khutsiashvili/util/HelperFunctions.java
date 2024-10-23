@@ -18,4 +18,6 @@ public class HelperFunctions {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
+
+
 }
