@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_2.pages;
+package com.epam.training.luka_khutsiashvili.optional_practice_2.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
-import static com.epam.training.luka_khutsiashvili.util.HelperFunctions.clickElement;
-import static com.epam.training.luka_khutsiashvili.util.HelperFunctions.setInputText;
 
 import java.time.Duration;
 import java.util.List;
