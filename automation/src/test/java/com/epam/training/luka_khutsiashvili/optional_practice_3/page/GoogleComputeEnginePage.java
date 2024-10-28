@@ -22,7 +22,7 @@ public class GoogleComputeEnginePage extends BasePage {
     @FindBy(xpath = "//label[@class='zT2df' and @for='107regular']")
     private WebElement provisioningModelRegularOption;
 
-    @FindBy(xpath = "//*[@id='ow6']/div/div/div/div/div/div/div[1]/div/div[2]/div[3]/div[11]/div/div/div[2]/div/div[1]/div[1]/div/div/div/div[1]/div")
+    @FindBy(xpath = "//span[text()='Machine Family']/ancestor::div[@role='combobox']")
     private WebElement machineFamilyDropdown;
 
     @FindBy(xpath = "//li[@role='option' and @data-value='general-purpose']")
