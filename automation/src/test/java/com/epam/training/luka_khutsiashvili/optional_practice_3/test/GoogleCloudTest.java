@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
-public class GoogleCloudMainPageTest {
+public class GoogleCloudTest {
     private WebDriver driver;
     private GoogleCloudMainPage googleCloudMainPage;
     private GoogleComputeEnginePage googleComputeEnginePage;
