@@ -1,6 +1,6 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.util;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util;
 
-import com.epam.training.luka_khutsiashvili.optional_practice_3.model.FieldType;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.FieldType;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,6 @@ import java.util.Map;
 public class ElementVerifier {
 
     private static final Duration TIMEOUT_DURATION = Duration.ofSeconds(10);
-
 
     public static void verifyElements(WebDriver driver, Map<FieldType, String> expectedValues) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT_DURATION);

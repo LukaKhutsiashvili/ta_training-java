@@ -1,18 +1,19 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
 
-import com.epam.training.luka_khutsiashvili.optional_practice_3.config.Config;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.config.ConfigLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
-public class BasePage {
+public abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(Config.DEFAULT_TIMEOUT));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigLoader.getTimeout()));
         PageFactory.initElements(driver, this);
     }
 

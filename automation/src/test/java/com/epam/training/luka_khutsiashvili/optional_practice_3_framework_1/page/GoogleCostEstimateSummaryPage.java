@@ -1,9 +1,9 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
 
-import com.epam.training.luka_khutsiashvili.optional_practice_3.model.CostEstimate;
-import com.epam.training.luka_khutsiashvili.optional_practice_3.model.FieldType;
-import com.epam.training.luka_khutsiashvili.optional_practice_3.util.BrowserUtils;
-import com.epam.training.luka_khutsiashvili.optional_practice_3.util.ElementVerifier;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.CostEstimate;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.FieldType;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.BrowserUtils;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.ElementVerifier;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 
-public class GoogleCostEstimateSummaryPage extends BasePage {
+public class GoogleCostEstimateSummaryPage extends AbstractPage {
 
     @FindBy(xpath = "//button[@aria-label='Open Share Estimate dialog']")
     private WebElement shareBtn;

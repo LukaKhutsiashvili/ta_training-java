@@ -1,15 +1,17 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
 
-import com.epam.training.luka_khutsiashvili.optional_practice_3.config.Config;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.config.ConfigLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
 
-public class GoogleCloudMainPage extends BasePage {
-
+public class GoogleCloudMainPage extends AbstractPage {
+    private static final Logger logger = LoggerFactory.getLogger(GoogleCloudMainPage.class);
     private static final String CALCULATOR_SEARCH_TERM = "Google Cloud Platform Pricing Calculator";
 
     @FindBy(xpath = "//div[@class='ND91id LLv0lb' and @jsname='MVsrn']")
@@ -35,12 +37,14 @@ public class GoogleCloudMainPage extends BasePage {
     }
 
     public void openPage() {
-        super.openPage(Config.BASE_URL);
+        super.openPage(ConfigLoader.getBaseUrl());
+        logger.info("Opened Google Cloud Main Page: {}", ConfigLoader.getBaseUrl());
     }
 
     public void openComputeEngineForm() {
         searchForCalculator();
-        clickElement(wait,searchResult);
+        clickElement(wait, searchResult);
+        logger.info("Navigated to the Compute Engine form");
         clickElement(addEstimateBtn);
         clickElement(wait, computeEngineBtn);
     }
@@ -49,5 +53,6 @@ public class GoogleCloudMainPage extends BasePage {
         clickElement(searchIcon);
         setInputText(searchInputField, CALCULATOR_SEARCH_TERM);
         clickElement(inputFieldSearchBtn);
+        logger.info("Searched for: {}", CALCULATOR_SEARCH_TERM);
     }
 }

@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.model;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model;
 
 public class CostEstimate {
     private final String numOfInstance;

@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
 
-public class GoogleComputeEnginePage extends BasePage {
+public class GoogleComputeEnginePage extends AbstractPage {
 
     @FindBy(xpath = "//*[@id='c22']")
     private WebElement instanceCountInput;
