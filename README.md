@@ -26,29 +26,24 @@ Execute the commands below to run GoogleCloudTest in targeted environments with 
 
 ```bash
 mvn test -Dtest=GoogleCloudTest -Denvironment=dev -DBROWSER=chrome
-
-### QA Environment
-
-```bash
+QA Environment
+bash
+Copy code
 mvn test -Dtest=GoogleCloudTest -Denvironment=qa -DBROWSER=firefox
-
-### Staging Environment
-
-```bash
+Staging Environment
+bash
+Copy code
 mvn test -Dtest=GoogleCloudTest -Denvironment=staging -DBROWSER=chrome
-
-### Production Environment
-
-```bash
+Production Environment
+bash
+Copy code
 mvn test -Dtest=GoogleCloudTest -Denvironment=prod -DBROWSER=edge
+Running the Complete Test Suite
+For a full suite execution covering both GoogleCloudTest and PastebinTest, use the following command:
 
-### **Running the Complete Test Suite**
-
-```bash
+bash
+Copy code
 mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
-
-## Logging and Screenshot Management
-
-- **Logging**: Configured via Log4j2; logs are saved in logs/app.log for structured tracking and debugging.
-- **Screenshots**: Screenshots are automatically captured on test failures for GoogleCloudTest only and saved in /screenshots for easy access.
-
+Logging and Screenshot Management
+Logging: Configured via Log4j2; logs are saved in logs/app.log for structured tracking and debugging.
+Screenshots: Screenshots are automatically captured on test failures for GoogleCloudTest only and saved in /screenshots for easy access.
