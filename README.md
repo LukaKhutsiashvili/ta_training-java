@@ -20,7 +20,6 @@ Ensure the following are set up to guarantee smooth test execution:
 
 ## Running GoogleCloudTest in Specific Environments
 
-**Before running tests, ensure you are in the correct directory (`automation`).**
 
 Execute the commands below to run GoogleCloudTest in targeted environments with specified browsers.
 
