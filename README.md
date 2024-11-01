@@ -57,5 +57,5 @@ mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xm
 
 ## Logging and Screenshot Management
 
-- **Logging**: Configured via Log4j2; logs are saved in logs/app.log for structured tracking and debugging.
+- **Logging**: Configured via Log4j2 for structured tracking and debugging.
 - **Screenshots**: Screenshots are automatically captured on test failures for GoogleCloudTest only and saved in /screenshots for easy access.
