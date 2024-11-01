@@ -1,7 +1,17 @@
-automation/target/
-!.mvn/wrapper/maven-wrapper.jar
+# Target folders
+/target/
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# Maven-specific files
+*.log
+*.tmp
+
+# Ignore compiled Java classes
+*.class
+
+# Ignore .gitignore files in subfolders
+!.gitignore
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -11,21 +21,7 @@ automation/target/
 *.iws
 *.iml
 *.ipr
-
-# Ignore all .idea files and folders
 .idea/
-
-
-# Ignore Maven-specific files
-*.log
-*.tmp
-
-# Ignore compiled Java classes
-*.class
-
-# Ignore .gitignore file in subfolders
-!.gitignore
-
 
 ### Eclipse ###
 .apt_generated
