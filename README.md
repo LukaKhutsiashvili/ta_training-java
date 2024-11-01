@@ -20,30 +20,32 @@ Ensure the following are set up to guarantee smooth test execution:
 
 ## Running GoogleCloudTest in Specific Environments
 
+**Before running tests, ensure you are in the correct directory (`automation`).**
+
 Execute the commands below to run GoogleCloudTest in targeted environments with specified browsers.
 
 ### Development Environment
 
 ```bash
-mvn test -Dtest=GoogleCloudTest -Denvironment=dev -DBROWSER=chrome
+mvn clean test -Dtest=GoogleCloudTest -Denvironment=dev
 ```
 
 ### QA Environment
 
 ```bash
-mvn test -Dtest=GoogleCloudTest -Denvironment=qa -DBROWSER=firefox
+mvn clean test -Dtest=GoogleCloudTest -Denvironment=qa
 ```
 
 ### Staging Environment
 
 ```bash
-mvn test -Dtest=GoogleCloudTest -Denvironment=staging -DBROWSER=chrome
+mvn clean test -Dtest=GoogleCloudTest -Denvironment=staging
 ```
 
 ### Production Environment
 
 ```bash
-mvn test -Dtest=GoogleCloudTest -Denvironment=prod -DBROWSER=edge
+mvn clean test -Dtest=GoogleCloudTest -Denvironment=prod
 ```
 
 ### Running the Complete Test Suite
@@ -51,7 +53,7 @@ mvn test -Dtest=GoogleCloudTest -Denvironment=prod -DBROWSER=edge
 For a full suite execution covering both GoogleCloudTest and PastebinTest, use the following command:
 
 ```bash
-mvn test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
+mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
 ```
 
 ## Logging and Screenshot Management
