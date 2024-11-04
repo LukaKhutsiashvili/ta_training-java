@@ -37,7 +37,7 @@ public class LoginTest {
     }
 
     @ParameterizedTest
-    @MethodSource("com.epam.training.luka_khutsiashvili.final_task.util.TestDataProvider#loginDataProvider")
+    @MethodSource("com.epam.training.luka_khutsiashvili.final_task.utils.TestDataProvider#loginDataProvider")
     public void testLoginForm(String username, String password, String expectedMessageOrTitle) throws InterruptedException {
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
