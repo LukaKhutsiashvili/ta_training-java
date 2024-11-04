@@ -1,9 +1,9 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages;
 
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.CostEstimate;
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.FieldType;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.BrowserUtils;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.ElementVerifier;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils.BrowserUtils;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils.ElementVerifier;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils;
 
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.FieldType;
 import org.assertj.core.api.SoftAssertions;

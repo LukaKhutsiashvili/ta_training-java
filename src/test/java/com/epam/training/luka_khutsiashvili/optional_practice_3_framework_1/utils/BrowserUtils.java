@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

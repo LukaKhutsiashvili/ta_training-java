@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.final_task.util;
+package com.epam.training.luka_khutsiashvili.final_task.utils;
 
 import com.epam.training.luka_khutsiashvili.final_task.config.ConfigLoader;
 import org.openqa.selenium.edge.EdgeOptions;

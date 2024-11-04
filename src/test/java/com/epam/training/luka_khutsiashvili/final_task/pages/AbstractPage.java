@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.final_task.page;
+package com.epam.training.luka_khutsiashvili.final_task.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

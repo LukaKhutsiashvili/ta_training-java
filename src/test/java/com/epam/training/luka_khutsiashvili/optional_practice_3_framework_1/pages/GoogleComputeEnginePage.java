@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

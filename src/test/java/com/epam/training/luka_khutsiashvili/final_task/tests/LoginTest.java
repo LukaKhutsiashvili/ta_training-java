@@ -1,12 +1,11 @@
-package com.epam.training.luka_khutsiashvili.final_task.test;
+package com.epam.training.luka_khutsiashvili.final_task.tests;
 
 import com.epam.training.luka_khutsiashvili.final_task.config.ConfigLoader;
 import com.epam.training.luka_khutsiashvili.final_task.driver.DriverSingleton;
-import com.epam.training.luka_khutsiashvili.final_task.page.LoginPage;
-import com.epam.training.luka_khutsiashvili.final_task.util.CustomAssertions;
-import com.epam.training.luka_khutsiashvili.final_task.util.LoggerUtil;
+import com.epam.training.luka_khutsiashvili.final_task.pages.LoginPage;
+import com.epam.training.luka_khutsiashvili.final_task.utils.CustomAssertions;
+import com.epam.training.luka_khutsiashvili.final_task.utils.LoggerUtil;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;

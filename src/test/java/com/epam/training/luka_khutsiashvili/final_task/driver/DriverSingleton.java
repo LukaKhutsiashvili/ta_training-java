@@ -1,7 +1,7 @@
 package com.epam.training.luka_khutsiashvili.final_task.driver;
 
 import com.epam.training.luka_khutsiashvili.final_task.config.ConfigLoader;
-import com.epam.training.luka_khutsiashvili.final_task.util.BrowserOptions;
+import com.epam.training.luka_khutsiashvili.final_task.utils.BrowserOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;

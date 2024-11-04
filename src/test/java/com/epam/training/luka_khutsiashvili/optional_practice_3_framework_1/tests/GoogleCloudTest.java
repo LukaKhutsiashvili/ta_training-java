@@ -1,13 +1,13 @@
-package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.test;
+package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.tests;
 
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.config.ConfigLoader;
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.driver.DriverSingleton;
 import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.model.CostEstimate;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page.GoogleCloudMainPage;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page.GoogleComputeEnginePage;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.page.GoogleCostEstimateSummaryPage;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.BrowserUtils;
-import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.util.ScreenshotExtension;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages.GoogleCloudMainPage;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages.GoogleComputeEnginePage;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages.GoogleCostEstimateSummaryPage;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils.BrowserUtils;
+import com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils.ScreenshotExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

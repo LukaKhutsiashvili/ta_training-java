@@ -1,6 +1,6 @@
-package com.epam.training.luka_khutsiashvili.final_task.page;
+package com.epam.training.luka_khutsiashvili.final_task.pages;
 
-import com.epam.training.luka_khutsiashvili.final_task.util.LoggerUtil;
+import com.epam.training.luka_khutsiashvili.final_task.utils.LoggerUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,4 +1,4 @@
-package com.epam.training.luka_khutsiashvili.final_task.util;
+package com.epam.training.luka_khutsiashvili.final_task.utils;
 
 import org.hamcrest.MatcherAssert;
 import static org.hamcrest.Matchers.*;
