@@ -88,7 +88,8 @@ public class GoogleComputeEnginePage extends AbstractPage {
 
     private void selectOperatingSystem() {
         clickElement(wait, operatingSystemDropdown);
-        clickElement(wait,operatingSystemOptionFreeDebian);
+        clickElement(wait, operatingSystemOptionFreeDebian);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void selectProvisioningModel() {
@@ -96,36 +97,42 @@ public class GoogleComputeEnginePage extends AbstractPage {
     }
 
     private void selectMachineFamily() {
-        clickElement(wait,machineFamilyDropdown);
-        clickElement(wait,machineFamilyOptionGeneralPurpose);
+        clickElement(wait, machineFamilyDropdown);
+        clickElement(wait, machineFamilyOptionGeneralPurpose);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
+
     }
 
     private void selectSeries() {
-        clickElement(wait,seriesDropdown);
-        clickElement(wait,seriesOptionN1);
+        clickElement(wait, seriesDropdown);
+        clickElement(wait, seriesOptionN1);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void selectMachineType() {
-        clickElement(wait,machineTypeDropdown);
-        clickElement(wait,machineTypeOptionN1Standard8);
+        clickElement(wait, machineTypeDropdown);
+        clickElement(wait, machineTypeOptionN1Standard8);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void addGPU() {
-        clickElement(wait,addGPUButton);
-        clickElement(wait,gpuTypeDropdown);
-        clickElement(wait,gpuTypeOptionNVIDIA_V100);
-        clickElement(wait,gpuCountDropdown);
-        clickElement(wait,gpuCountOption1);
+        clickElement(wait, addGPUButton);
+        clickElement(wait, gpuTypeDropdown);
+        clickElement(wait, gpuTypeOptionNVIDIA_V100);
+        clickElement(wait, gpuCountDropdown);
+        clickElement(wait, gpuCountOption1);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void selectLocalSSD() {
-        clickElement(wait,localSSDDropdown);
-        clickElement(wait,localSSDOption2x375Gb);
+        clickElement(wait, localSSDDropdown);
+        clickElement(wait, localSSDOption2x375Gb);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void selectRegion() {
-        clickElement(wait,regionDropdown);
-        clickElement(wait,regionOptionNetherlands);
+        clickElement(wait, regionDropdown);
+        clickElement(wait, regionOptionNetherlands);
         // Wait for the "Service cost updated" message to appear
         wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
