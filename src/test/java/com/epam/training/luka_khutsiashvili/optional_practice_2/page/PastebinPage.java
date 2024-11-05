@@ -1,6 +1,7 @@
 package com.epam.training.luka_khutsiashvili.optional_practice_2.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
-import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
-
 import java.time.Duration;
 import java.util.List;
+
+import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
+import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
 
 public class PastebinPage {
     private WebDriver driver;
@@ -26,10 +27,10 @@ public class PastebinPage {
     @FindBy(id = "postform-text")
     private WebElement codeInput;
 
-    @FindBy(id = "select2-postform-format-container")
+    @FindBy(xpath = "//span[@id='select2-postform-format-container']")
     private WebElement syntaxHighlightingDropdown;
 
-    @FindBy(id = "select2-postform-expiration-container")
+    @FindBy(xpath = "//span[@id='select2-postform-expiration-container']")
     private WebElement expirationDropdown;
 
     @FindBy(id = "postform-name")
@@ -70,8 +71,17 @@ public class PastebinPage {
         createNewPaste(code, pasteName, SYNTAX_HIGHLIGHTING, EXPIRATION_TIME);
     }
 
+    // Hide ads if present on the page
+    private void hideAdIfPresent() {
+        List<WebElement> ads = driver.findElements(By.className("display_ad_place"));
+        if (!ads.isEmpty()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.visibility='hidden'", ads.get(0));
+        }
+    }
+
     // Helper for dropdown selection
     private void selectOption(WebElement dropdown, String optionText) {
+        hideAdIfPresent(); // Ensure ads are hidden before interacting
         clickElement(wait, dropdown);
         WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//li[contains(@class, 'select2-results__option') and text()='" + optionText + "']")
