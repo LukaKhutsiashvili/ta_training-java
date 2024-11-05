@@ -38,18 +38,35 @@ public class LoginTest {
 
     @ParameterizedTest
     @MethodSource("com.epam.training.luka_khutsiashvili.final_task.utils.TestDataProvider#loginDataProvider")
-    public void testLoginForm(String username, String password, String expectedMessageOrTitle) throws InterruptedException {
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
-        loginPage.clickLogin();
+    public void testLoginForm(String username, String password, String expectedMessageOrTitle) {
+        // UC-1: Test Login with empty credentials
+        if (username.isEmpty() && password.isEmpty()) {
+            loginPage.enterUsername("temp_username"); // Temporary entry to meet typing step requirement
+            loginPage.enterPassword("temp_password");
+            loginPage.clearFields(); // Clear both fields as per UC-1 requirement
+            loginPage.clickLogin();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            // UC-1 and UC-2: Expect error message
             String errorMessage = loginPage.getErrorMessage();
-            LoggerUtil.logInfo("Checking error message for missing credentials.");
+            LoggerUtil.logInfo("Checking error message for missing username.");
             CustomAssertions.assertErrorMessage(errorMessage, expectedMessageOrTitle);
-        } else {
-            // UC-3: Validate page title
+        }
+        // UC-2: Test Login with only Username
+        else if (!username.isEmpty() && password.isEmpty()) {
+            loginPage.enterUsername(username); // Enter any credentials in the username field
+            loginPage.enterPassword("temp_password"); // Enter a password as required
+            loginPage.clearPasswordField(); // Clear the password field as per UC-2 requirement
+            loginPage.clickLogin();
+
+            String errorMessage = loginPage.getErrorMessage();
+            LoggerUtil.logInfo("Checking error message for missing password.");
+            CustomAssertions.assertErrorMessage(errorMessage, expectedMessageOrTitle);
+        }
+        // UC-3: Test Login with valid Username and Password
+        else {
+            loginPage.enterUsername(username);
+            loginPage.enterPassword(password);
+            loginPage.clickLogin();
+
             LoggerUtil.logInfo("Validating title for successful login.");
             CustomAssertions.assertTextEquals(driver.getTitle(), expectedMessageOrTitle);
         }
