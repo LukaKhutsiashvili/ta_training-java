@@ -1,7 +1,6 @@
 package com.epam.training.luka_khutsiashvili.optional_practice_2.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
@@ -45,6 +43,10 @@ public class PastebinPage {
     @FindBy(xpath = "//div[@class='left']/a[text()='Bash']")
     private WebElement syntaxVerification;
 
+    // Locator for cookie popup "Accept" button (updated)
+    @FindBy(xpath = "//span[contains(@class, 'cookie-button') and text()='OK, I Understand']")
+    private WebElement acceptCookiesButton;
+
     // Constructor
     public PastebinPage(WebDriver driver) {
         this.driver = driver;
@@ -55,6 +57,7 @@ public class PastebinPage {
     // Open page
     public void openPage(String url) {
         driver.get(url);
+        acceptCookies(); // Accept cookies on page load
     }
 
     // Create new paste with flexibility for syntax and expiration
@@ -71,17 +74,18 @@ public class PastebinPage {
         createNewPaste(code, pasteName, SYNTAX_HIGHLIGHTING, EXPIRATION_TIME);
     }
 
-    // Hide ads if present on the page
-    private void hideAdIfPresent() {
-        List<WebElement> ads = driver.findElements(By.className("display_ad_place"));
-        if (!ads.isEmpty()) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].style.visibility='hidden'", ads.get(0));
+    // Accept cookies
+    private void acceptCookies() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(acceptCookiesButton));
+            clickElement(wait, acceptCookiesButton);
+        } catch (Exception e) {
+            // Ignore if the button is not found or not clickable
         }
     }
 
     // Helper for dropdown selection
     private void selectOption(WebElement dropdown, String optionText) {
-        hideAdIfPresent(); // Ensure ads are hidden before interacting
         clickElement(wait, dropdown);
         WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//li[contains(@class, 'select2-results__option') and text()='" + optionText + "']")
@@ -99,13 +103,7 @@ public class PastebinPage {
 
     public String getPastedCode() {
         wait.until(ExpectedConditions.visibilityOf(pastedCode));
-        List<WebElement> codeLines = pastedCode.findElements(By.tagName("li"));
-
-        StringBuilder pastedCodeText = new StringBuilder();
-        for (WebElement line : codeLines) {
-            pastedCodeText.append(line.getText()).append("\n");
-        }
-        return pastedCodeText.toString().trim();
+        return pastedCode.getText();
     }
 
     public void waitForTitleToContain(String expectedTitle) {
