@@ -1,5 +1,6 @@
 package com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.clickElement;
 import static com.epam.training.luka_khutsiashvili.helper_functions.HelperFunctions.setInputText;
+import static com.epam.training.luka_khutsiashvili.optional_practice_3_framework_1.utils.BrowserUtils.scrollToElement;
 
 public class GoogleComputeEnginePage extends AbstractPage {
 
@@ -94,6 +96,7 @@ public class GoogleComputeEnginePage extends AbstractPage {
 
     private void selectProvisioningModel() {
         clickElement(wait, provisioningModelRegularOption);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
     }
 
     private void selectMachineFamily() {
@@ -117,8 +120,10 @@ public class GoogleComputeEnginePage extends AbstractPage {
 
     private void addGPU() {
         clickElement(wait, addGPUButton);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
         clickElement(wait, gpuTypeDropdown);
         clickElement(wait, gpuTypeOptionNVIDIA_V100);
+        wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
         clickElement(wait, gpuCountDropdown);
         clickElement(wait, gpuCountOption1);
         wait.until(ExpectedConditions.visibilityOf(serviceCostUpdated));
