@@ -68,10 +68,10 @@ public class LoginPage {
         return isDisplayed;
     }
 
-    /*
+    /**
      * Clears the specified input field by selecting all text and deleting it.
      * Uses Actions to simulate a user selecting the text with CTRL+A and then pressing BACK_SPACE.
-    */
+     */
     private void clearField(WebElement element, String fieldName) {
         new Actions(driver)
                 .click(element)

@@ -8,6 +8,7 @@ public class ConfigLoader {
     private static final Properties properties = new Properties();
     private static ConfigLoader instance;
 
+    // Private constructor to load properties file for the specified environment
     private ConfigLoader() {
         String environment = System.getProperty("environment", "dev");  // Default to "dev" if not specified
         String propertiesFile = String.format("config/application-%s.properties", environment);
@@ -23,6 +24,8 @@ public class ConfigLoader {
         }
     }
 
+
+    //Returns the singleton instance of ConfigLoader.
     public static ConfigLoader getInstance() {
         if (instance == null) {
             instance = new ConfigLoader();
@@ -30,12 +33,12 @@ public class ConfigLoader {
         return instance;
     }
 
+    //Gets the value for a property key with an optional default.
     public String getProperty(String key, String defaultValue) {
         return System.getProperty(key, properties.getProperty(key, defaultValue));
     }
 
     public String getBrowser() {
-        // Load the browser type from properties, defaulting to "firefox" if not specified
         return properties.getProperty("browser", "firefox");
     }
 
