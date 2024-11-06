@@ -3,7 +3,7 @@
 
 This repository implements automation testing for the saucedemo Login Form, Google Cloud Platform Pricing Calculator, and Pastebin. Utilizing TestNG, Maven, and Cucumber BDD, this project ensures reliable, adaptable, and efficient test execution across various environments and browsers.
 
-## Final Task - saucedemo Login Form Automation
+## Final Task - Saucedemo Login Form Automation
 
 The final task automates the testing of the Login Form on the saucedemo website, using Cucumber BDD to structure the test scenarios. The task covers three main use cases:
 
