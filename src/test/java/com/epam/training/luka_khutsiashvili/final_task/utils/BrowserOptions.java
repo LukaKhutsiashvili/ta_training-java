@@ -1,45 +1,42 @@
 package com.epam.training.luka_khutsiashvili.final_task.utils;
 
 import com.epam.training.luka_khutsiashvili.final_task.config.ConfigLoader;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class BrowserOptions {
 
-    /**
-     * Configures Firefox options based on environment settings.
-     * - Headless mode: Enables headless mode if specified, with dynamic width and height.
-     * - Start Maximized: Maximizes the window if not in headless mode.
-     */
+    private static final ConfigLoader config = ConfigLoader.getInstance();
+
     public static FirefoxOptions getFirefoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
 
-        if (ConfigLoader.getInstance().isHeadless()) {
+        if (config.isHeadless()) {
             options.addArguments("--headless");
-            options.addArguments("--width=" + ConfigLoader.getInstance().getBrowserWidth());
-            options.addArguments("--height=" + ConfigLoader.getInstance().getBrowserHeight());
-        } else if (ConfigLoader.getInstance().isStartMaximized()) {
+            options.addArguments("--width=" + config.getBrowserWidth());
+            options.addArguments("--height=" + config.getBrowserHeight());
+        } else if (config.isStartMaximized()) {
             options.addArguments("--start-maximized");
         }
 
         return options;
     }
 
-    /**
-     * Configures Edge options based on environment settings.
-     * - Headless mode: Enables headless mode if specified, with dynamic window size.
-     * - Start Maximized: Maximizes the window if not in headless mode.
-     */
     public static EdgeOptions getEdgeOptions() {
         EdgeOptions options = new EdgeOptions();
 
-        if (ConfigLoader.getInstance().isHeadless()) {
+        if (config.isHeadless()) {
             options.addArguments("--headless");
-            options.addArguments("--window-size=" + ConfigLoader.getInstance().getBrowserWidth() + "," + ConfigLoader.getInstance().getBrowserHeight());
-        } else if (ConfigLoader.getInstance().isStartMaximized()) {
+            options.addArguments("window-size=" + config.getBrowserWidth() + "x" + config.getBrowserHeight());
+        } else if (config.isStartMaximized()) {
             options.addArguments("--start-maximized");
         }
-
         return options;
+    }
+
+    public static WebDriver getEdgeDriver() {
+        return new EdgeDriver(getEdgeOptions());
     }
 }
