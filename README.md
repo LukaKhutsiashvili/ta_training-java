@@ -33,11 +33,11 @@ The final task automates the testing of the Login Form on the saucedemo website,
 
 ### Features
 
-- **BDD with Cucumber**: Implements Given-When-Then scenarios in `.feature` files for clear test structure.
+- **BDD with Cucumber**: Implements Given-When-Then scenarios in `src/test/resources/features/login.feature` files for clear test structure.
 - **Data-Driven Testing**: Utilizes JUnit's `ParameterizedTest` and custom `TestDataProvider` to cover multiple test cases.
 - **Parallel Execution**: Configured parallel execution for faster test runs, supporting up to three concurrent threads.
-- **Non-Parallel Execution**: For non-parallel test execution, use the `CucumberTestRunner` located in `cucumber/runners/CucumberTestRunner` to run tests sequentially.
-- **Browser Options**: Custom configurations for Firefox and Edge browsers, including headless mode, window maximization, and autofill control.
+- **Non-Parallel Execution**: For non-parallel test execution, use the `CucumberTestRunner` located in `final_task/cucumber/runners/CucumberTestRunner` to run tests sequentially.
+- **Browser Options**: Custom configurations for Firefox and Edge browsers, including headless mode, window maximization, height and width control.
 
 ### Running the Final Task
 
