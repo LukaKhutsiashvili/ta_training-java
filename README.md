@@ -1,6 +1,62 @@
+
 # TA Training Java Project
 
-This repository implements automation testing for the Google Cloud Platform Pricing Calculator and Pastebin, utilizing TestNG and Maven to ensure reliable, adaptable, and efficient test execution.
+This repository implements automation testing for the Sauce Demo Login Form, Google Cloud Platform Pricing Calculator, and Pastebin. Utilizing TestNG, Maven, and Cucumber BDD, this project ensures reliable, adaptable, and efficient test execution across various environments and browsers.
+
+## Final Task - Sauce Demo Login Form Automation
+
+The final task automates the testing of the Login Form on the Sauce Demo website, using Cucumber BDD to structure the test scenarios. The task covers three main use cases:
+
+### Use Cases
+
+1. **UC-1**: Test Login form with empty credentials.
+   - **Steps**:
+     - Type any credentials into both the "Username" and "Password" fields.
+     - Clear the contents of both fields.
+     - Click the "Login" button.
+     - **Expected Result**: An error message should be displayed stating "Username is required".
+
+2. **UC-2**: Test Login form with only the username provided.
+   - **Steps**:
+     - Type any credentials into the "Username" field.
+     - Enter any value in the "Password" field.
+     - Clear the contents of the "Password" field.
+     - Click the "Login" button.
+     - **Expected Result**: An error message should be displayed stating "Password is required".
+
+3. **UC-3**: Test Login form with both username and password provided.
+   - **Steps**:
+     - Type valid credentials in the "Username" field that are part of the accepted username list (e.g., "standard_user").
+     - Enter "secret_sauce" in the "Password" field.
+     - Click the "Login" button.
+     - **Expected Result**: Successful login should occur, and the dashboard should display with the title "Swag Labs".
+
+### Features
+
+- **BDD with Cucumber**: Implements Given-When-Then scenarios in `.feature` files for clear test structure.
+- **Data-Driven Testing**: Utilizes JUnit's `ParameterizedTest` and custom `TestDataProvider` to cover multiple test cases.
+- **Parallel Execution**: Configured parallel execution for faster test runs, supporting up to three concurrent threads.
+- **Non-Parallel Execution**: For non-parallel test execution, use the `CucumberTestRunner` located in `cucumber/runners/CucumberTestRunner` to run tests sequentially.
+- **Browser Options**: Custom configurations for Firefox and Edge browsers, including headless mode, window maximization, and autofill control.
+
+### Running the Final Task
+
+The final task runs the `LoginTest` in different environments, each configured with a specific browser:
+
+- **Development Environment** (`dev`): Runs in **Firefox** (default browser).
+- **QA Environment** (`qa`): Runs in **Microsoft Edge**.
+
+Use the following commands to execute the final task in each environment:
+
+**Development Environment**
+```shell
+mvn clean test -Dtest=LoginTest -Denvironment=dev
+```
+
+**QA Environment**
+```shell
+mvn clean test -Dtest=LoginTest -Denvironment=qa
+```
 
 ## Project Overview
 
@@ -20,42 +76,37 @@ Ensure the following are set up to guarantee smooth test execution:
 
 ## Running GoogleCloudTest in Specific Environments
 
+Execute the commands below to run `GoogleCloudTest` in targeted environments with specified browsers.
 
-Execute the commands below to run GoogleCloudTest in targeted environments with specified browsers.
-
-### Development Environment
-
-```bash
+**Development Environment**
+```shell
 mvn clean test -Dtest=GoogleCloudTest -Denvironment=dev
 ```
 
-### QA Environment
-
-```bash
+**QA Environment**
+```shell
 mvn clean test -Dtest=GoogleCloudTest -Denvironment=qa
 ```
 
-### Staging Environment
-
-```bash
+**Staging Environment**
+```shell
 mvn clean test -Dtest=GoogleCloudTest -Denvironment=staging
 ```
 
-### Production Environment
-
-```bash
+**Production Environment**
+```shell
 mvn clean test -Dtest=GoogleCloudTest -Denvironment=prod
 ```
 
-### Running the Complete Test Suite
+## Running the Complete Test Suite
 
-For a full suite execution covering both GoogleCloudTest and PastebinTest, use the following command:
+For a full suite execution covering GoogleCloudTest, PastebinTest, and Sauce Demo Login Test, use the following command:
 
-```bash
+```shell
 mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
 ```
 
 ## Logging and Screenshot Management
 
 - **Logging**: Configured via Log4j2 for structured tracking and debugging.
-- **Screenshots**: Screenshots are automatically captured on test failures for GoogleCloudTest only and saved in /screenshots for easy access.
+- **Screenshots**: Screenshots are automatically captured on test failures for GoogleCloudTest only and saved in `/screenshots` for easy access.
