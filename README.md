@@ -100,7 +100,7 @@ mvn clean test -Dtest=GoogleCloudTest -Denvironment=prod
 
 ## Running the Complete Test Suite
 
-For a full suite execution covering GoogleCloudTest saucedemo Login Test, use the following command:
+For a full suite execution covering GoogleCloudTest and saucedemo Login Test, use the following command:
 
 ```shell
 mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
