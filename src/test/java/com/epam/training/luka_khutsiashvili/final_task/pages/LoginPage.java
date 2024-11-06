@@ -1,18 +1,15 @@
 package com.epam.training.luka_khutsiashvili.final_task.pages;
 
 import com.epam.training.luka_khutsiashvili.final_task.utils.LoggerUtil;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LoginPage {
     private WebDriver driver;
-    private WebDriverWait wait;
 
     @FindBy(xpath = "//input[@id='user-name']")
     private WebElement usernameField;
@@ -28,44 +25,61 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
     public void enterUsername(String username) {
-        wait.until(ExpectedConditions.visibilityOf(usernameField)).sendKeys(username);
+        usernameField.sendKeys(username);
         LoggerUtil.logInfo("Entered username: " + username);
     }
 
     public void enterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOf(passwordField)).sendKeys(password);
+        passwordField.sendKeys(password);
         LoggerUtil.logInfo("Entered password.");
     }
 
     public void clearFields() {
-        wait.until(ExpectedConditions.visibilityOf(usernameField)).clear();
-        wait.until(ExpectedConditions.visibilityOf(passwordField)).clear();
-        LoggerUtil.logInfo("Cleared username and password fields.");
+        clearField(usernameField, "username");
+        clearField(passwordField, "password");
     }
 
     public void clearUsernameField() {
-        wait.until(ExpectedConditions.visibilityOf(usernameField)).clear();
-        LoggerUtil.logInfo("Cleared username field.");
+        clearField(usernameField, "username");
     }
 
     public void clearPasswordField() {
-        wait.until(ExpectedConditions.visibilityOf(passwordField)).clear();
-        LoggerUtil.logInfo("Cleared password field.");
+        clearField(passwordField, "password");
     }
 
     public void clickLogin() {
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+        loginButton.click();
         LoggerUtil.logInfo("Clicked login button.");
     }
 
     public String getErrorMessage() {
-        String message = wait.until(ExpectedConditions.visibilityOf(errorMessage)).getText();
+        String message = errorMessage.getText();
         LoggerUtil.logInfo("Captured error message: " + message);
         return message;
+    }
+
+    public boolean isErrorMessageDisplayed(String expectedMessage) {
+        boolean isDisplayed = getErrorMessage().contains(expectedMessage);
+        LoggerUtil.logInfo("Expected error message '" + expectedMessage + "' displayed: " + isDisplayed);
+        return isDisplayed;
+    }
+
+    /*
+     * Clears the specified input field by selecting all text and deleting it.
+     * Uses Actions to simulate a user selecting the text with CTRL+A and then pressing BACK_SPACE.
+    */
+    private void clearField(WebElement element, String fieldName) {
+        new Actions(driver)
+                .click(element)
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a")
+                .keyUp(Keys.CONTROL)
+                .sendKeys(Keys.BACK_SPACE)
+                .perform();
+        LoggerUtil.logInfo("Cleared " + fieldName + " field.");
     }
 }
