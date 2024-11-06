@@ -1,11 +1,11 @@
 
 # TA Training Java Project
 
-This repository implements automation testing for the Sauce Demo Login Form, Google Cloud Platform Pricing Calculator, and Pastebin. Utilizing TestNG, Maven, and Cucumber BDD, this project ensures reliable, adaptable, and efficient test execution across various environments and browsers.
+This repository implements automation testing for the saucedemo Login Form, Google Cloud Platform Pricing Calculator, and Pastebin. Utilizing TestNG, Maven, and Cucumber BDD, this project ensures reliable, adaptable, and efficient test execution across various environments and browsers.
 
-## Final Task - Sauce Demo Login Form Automation
+## Final Task - saucedemo Login Form Automation
 
-The final task automates the testing of the Login Form on the Sauce Demo website, using Cucumber BDD to structure the test scenarios. The task covers three main use cases:
+The final task automates the testing of the Login Form on the saucedemo website, using Cucumber BDD to structure the test scenarios. The task covers three main use cases:
 
 ### Use Cases
 
@@ -100,7 +100,7 @@ mvn clean test -Dtest=GoogleCloudTest -Denvironment=prod
 
 ## Running the Complete Test Suite
 
-For a full suite execution covering GoogleCloudTest and Sauce Demo Login Test, use the following command:
+For a full suite execution covering GoogleCloudTest saucedemo Login Test, use the following command:
 
 ```shell
 mvn clean test "-Dsurefire.suiteXmlFiles=src/test/resources/suites/testng-all.xml" -Denvironment=dev
