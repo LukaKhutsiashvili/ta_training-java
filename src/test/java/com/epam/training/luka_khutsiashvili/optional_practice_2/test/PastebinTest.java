@@ -24,6 +24,7 @@ public class PastebinTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         pastebinPage = new PastebinPage(driver);
         pastebinPage.openPage(URL);
     }
