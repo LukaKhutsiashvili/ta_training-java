@@ -31,14 +31,6 @@ The final task automates the testing of the Login Form on the saucedemo website,
      - Click the "Login" button.
      - **Expected Result**: Successful login should occur, and the dashboard should display with the title "Swag Labs".
 
-### Features
-
-- **BDD with Cucumber**: Implements Given-When-Then scenarios in `src/test/resources/features/login.feature` files for clear test structure.
-- **Data-Driven Testing**: Utilizes JUnit's `ParameterizedTest` and custom `TestDataProvider` to cover multiple test cases.
-- **Parallel Execution**: Configured parallel execution for faster test runs, supporting up to three concurrent threads.
-- **Non-Parallel Execution**: For non-parallel test execution, use the `CucumberTestRunner` located in `final_task/cucumber/runners/CucumberTestRunner` to run tests sequentially.
-- **Browser Options**: Custom configurations for Firefox and Edge browsers, including headless mode, window maximization, height and width control.
-
 ### Running the Final Task
 
 The final task runs the `LoginTest` in different environments, each configured with a specific browser:
@@ -57,6 +49,14 @@ mvn clean test -Dtest=LoginTest -Denvironment=dev
 ```shell
 mvn clean test -Dtest=LoginTest -Denvironment=qa
 ```
+
+### Features
+
+- **BDD with Cucumber**: Implements Given-When-Then scenarios in `src/test/resources/features/login.feature` files for clear test structure.
+- **Data-Driven Testing**: Utilizes JUnit's `ParameterizedTest` and custom `TestDataProvider` to cover multiple test cases.
+- **Parallel Execution**: Configured parallel execution for faster test runs, supporting up to three concurrent threads.
+- **Non-Parallel Execution**: For non-parallel test execution, use the `CucumberTestRunner` located in `final_task/cucumber/runners/CucumberTestRunner` to run tests sequentially.
+- **Browser Options**: Custom configurations for Firefox and Edge browsers, including headless mode, window maximization, height and width control.
 
 ## Google Cloud Platform Pricing Calculator Project Overview  
 
