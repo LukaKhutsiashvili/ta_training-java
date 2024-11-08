@@ -8,8 +8,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.time.Duration;
-
 /**
  * Singleton class for managing WebDriver instances, ensuring only one driver instance per thread.
  */
