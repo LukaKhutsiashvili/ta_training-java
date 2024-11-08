@@ -6,10 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private WebDriver driver;
+public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='user-name']")
     private WebElement usernameField;
@@ -24,8 +22,7 @@ public class LoginPage {
     private WebElement errorMessage;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver); // Call the constructor of AbstractPage
     }
 
     public void enterUsername(String username) {
@@ -43,10 +40,6 @@ public class LoginPage {
         clearField(passwordField, "password");
     }
 
-    public void clearUsernameField() {
-        clearField(usernameField, "username");
-    }
-
     public void clearPasswordField() {
         clearField(passwordField, "password");
     }
@@ -62,16 +55,6 @@ public class LoginPage {
         return message;
     }
 
-    public boolean isErrorMessageDisplayed(String expectedMessage) {
-        boolean isDisplayed = getErrorMessage().contains(expectedMessage);
-        LoggerUtil.logInfo("Expected error message '" + expectedMessage + "' displayed: " + isDisplayed);
-        return isDisplayed;
-    }
-
-    /**
-     * Clears the specified input field by selecting all text and deleting it.
-     * Uses Actions to simulate a user selecting the text with CTRL+A and then pressing BACK_SPACE.
-     */
     private void clearField(WebElement element, String fieldName) {
         new Actions(driver)
                 .click(element)
