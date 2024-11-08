@@ -14,8 +14,4 @@ public abstract class AbstractPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
-
-    protected void navigateTo(String url) {
-        driver.get(url);
-    }
 }
