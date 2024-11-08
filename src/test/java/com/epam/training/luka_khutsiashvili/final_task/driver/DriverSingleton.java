@@ -24,8 +24,6 @@ public class DriverSingleton {
 
     private static void initializeDriver() {
         String browser = ConfigLoader.getInstance().getBrowser().toLowerCase();
-        ConfigLoader config = ConfigLoader.getInstance();
-
         switch (browser) {
             case "edge":
                 WebDriverManager.edgedriver().setup();
